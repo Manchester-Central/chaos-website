@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventsService.getEvents().subscribe(events => {
-      this.events = events;
+      // filter out events that have already passed
+      this.events = events.filter(event => new Date(event.date) > new Date());
     });
   }
 
